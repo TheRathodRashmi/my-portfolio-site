@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A simple Image Manipulation With RR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px;
+        }
+
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox:target {
+            display: flex;
+        }
+
+        .slideshow {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .slideshow img {
+            width: 100%;
+            display: none;
+        }
+
+        .slideshow img.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Manipulation Task</h1>
+    </header>
+
+    <section>
+        <h2>Image Gallery</h2>
+        <div class="gallery">
+            <a href="#OrangeBox"><img src="OrangeBox.jpg" alt="" ></a>
+            <a href="#GreenBox"><img src="GreenBox.png" alt="Thumbnail 2"></a>
+            <a href="#YellowBox"><img src="YellowBox.png" alt="Thumbnail 3"></a>
+        </div>
+
+        <div id="OrangeBox" class="lightbox">
+            <img src="OrangeBox.jpg" alt="Enlarged 1">
+        </div>
+        <div id="GreenBox" class="lightbox">
+            <img src="GreenBox.png" alt="Enlarged 2">
+        </div>
+        <div id="YellowBox" class="lightbox">
+            <img src="YellowBox.png" alt="Enlarged 3">
+        </div>
+    </section>
+
+    <section>
+        <h2>Image Slideshow</h2>
+        <div class="slideshow">
+            <img src="OrangeBox.jpg" alt="Slide 1" class="active">
+            <img src="GreenBox.png" alt="Slide 2">
+            <img src="YellowBox.png" alt="Slide 3">
+        </div>
+    </section>
+
+    <script>
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slideshow img');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 3000);
+    </script>
+</body>
+</html>
