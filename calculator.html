@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rashmi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .calculator {
+            margin-top: 20px;
+        }
+        .calculator input {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <p>Rathod Rashmi</p>
+
+    <!-- Button to Change Color -->
+    <button class="button" id="colorButton">Click Me!</button>
+
+    <!-- Greeting Alert -->
+    <button class="button" id="greetButton">Greet Me!</button>
+
+    <!-- Basic Calculator -->
+    <div class="calculator">
+        <h3>Simple Calculator</h3>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <button class="button" id="calcButton">Add Numbers</button>
+        <p id="result">Result: </p>
+    </div>
+
+    <script>
+        // Button to change color
+        document.getElementById("colorButton").addEventListener("click", function() {
+            this.style.backgroundColor = this.style.backgroundColor === "red" ? "#4CAF50" : "red";
+        });
+
+        // Greeting alert based on time
+        document.getElementById("greetButton").addEventListener("click", function() {
+            const currentHour = new Date().getHours();
+            let greeting;
+            if (currentHour < 12) {
+                greeting = "Good Morning!";
+            } else if (currentHour < 18) {
+                greeting = "Good Afternoon!";
+            } else {
+                greeting = "Good Evening!";
+            }
+            alert(greeting);
+        });
+
+        // Basic calculator
+        document.getElementById("calcButton").addEventListener("click", function() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").textContent = "Please enter valid numbers.";
+            } else {
+                const sum = num1 + num2;
+                document.getElementById("result").textContent = `Result: ${sum}`;
+            }
+        });
+    </script>
+</body>
+</html>
